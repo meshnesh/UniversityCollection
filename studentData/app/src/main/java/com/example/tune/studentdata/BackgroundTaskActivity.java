@@ -9,13 +9,13 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BackgroundTask extends StringRequest {
+public class BackgroundTaskActivity extends StringRequest {
     private static final String REGISTER_REQUEST_URL = "http://10.0.2.2/dataCollection/init.php";
     private Map<String, String> params;
 
 
 
-    public BackgroundTask(   String name, int age, String gender,  String university, String job, String salary, String company, Response.Listener<String> listener) {
+    public BackgroundTaskActivity(String name, int age, String gender, String university, String job, String salary, String company, Response.Listener<String> listener) {
         super(Method.POST, REGISTER_REQUEST_URL, listener, null);
         params = new HashMap<>();
         params.put("name", name);

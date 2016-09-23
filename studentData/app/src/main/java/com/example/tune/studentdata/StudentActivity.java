@@ -1,5 +1,7 @@
 package com.example.tune.studentdata;
 
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -44,26 +46,26 @@ public class StudentActivity extends AppCompatActivity {
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
+//                        try {
+//                            JSONObject jsonResponse = new JSONObject(response);
+//                            boolean success = jsonResponse.getBoolean("success");
 //                            if (success) {
 //                                Intent intent = new Intent(StudentActivity.this, StudentActivity.class);
 //                                StudentActivity.this.startActivity(intent);
 //                            } else {
 //                                AlertDialog.Builder builder = new AlertDialog.Builder(StudentActivity.this);
-//                                builder.setMessage("Register Failed")
+//                                builder.setMessage("Saving Failed")
 //                                        .setNegativeButton("Retry", null)
 //                                        .create()
 //                                        .show();
 //                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
                     }
                 };
 
-                BackgroundTask registerRequest = new BackgroundTask(name, age, gender, university, salary, job, company, responseListener);
+                BackgroundTaskActivity registerRequest = new BackgroundTaskActivity(name, age, gender, university, salary, job, company, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(StudentActivity.this);
                 queue.add(registerRequest);
 
