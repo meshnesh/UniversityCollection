@@ -25,57 +25,23 @@ import java.util.Map;
 public class StudentActivity extends AppCompatActivity {
 
 
-    RequestQueue requestQueue;
-    String insertUrl = "http://localhost/dataCollection/init.php";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student);
+        setContentView(R.layout.welcome);
+
+        final Button bNext = (Button) findViewById(R.id.bNext);
 
 
-        final EditText etName = (EditText) findViewById(R.id.etName);
-        final EditText etAge = (EditText) findViewById(R.id.etAge);
-        final EditText etGender = (EditText) findViewById(R.id.etGender);
-        final EditText etUniversity = (EditText) findViewById(R.id.etUniversity);
-        final EditText etJob = (EditText) findViewById(R.id.etJob);
-        final EditText etSalary = (EditText) findViewById(R.id.etSalary);
-        final EditText etCompany = (EditText) findViewById(R.id.etCompany);
-        final Button bSave = (Button) findViewById(R.id.bSave);
-
-
-
-        bSave.setOnClickListener(new View.OnClickListener() {
+        bNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StringRequest request = new StringRequest(Request.Method.POST, insertUrl, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                    }
-                }, new Response.ErrorListener(){
-                   @Override
-                    public void onErrorResponse(VolleyError error){
-
-                   }
-                }){
-
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError{
-                        Map<String, String> parameters = new HashMap<String, String>();
-                        parameters.put("name", etName.getText().toString());
-                        parameters.put("age", etAge.getText().toString());
-                        parameters.put("gender", etGender.getText().toString());
-                        parameters.put("university", etUniversity.getText().toString());
-                        parameters.put("job", etJob.getText().toString());
-                        parameters.put("salary", etSalary.getText().toString());
-                        parameters.put("company", etCompany.getText().toString());
 
 
-                        return parameters;
-                    }
-                };
-                requestQueue.add(request);
+                Intent Intent = new Intent(StudentActivity.this, StudentWelcome.class);
+                StudentActivity.this.startActivity(Intent);
+
+
             }
         });
 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <Button
+        android:text="Next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bNext"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/holo_orange_dark" />
+
+    <TextView
+        android:text="Welcome to student data, where every student  wish of a dream job is taken to consideration."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvWelcome"
+        android:layout_weight="0.02"
+        android:textSize="18sp"
+        android:paddingLeft="10dp"
+        android:paddingTop="25dp"
+        android:layout_marginTop="13dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold|italic"
+        android:typeface="serif" />
+
+    <TextView
+        android:text="When you graduate Your dream companies will have already received your decision to join them"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvWelcome3"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        android:typeface="serif"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Simply fill the necessary forms to let employers know your choice."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvWelcome2"
+        android:layout_weight="0.02"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:textStyle="bold|italic"
+        android:typeface="serif"
+        android:layout_below="@+id/tvWelcome"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp" />
+</RelativeLayout>
