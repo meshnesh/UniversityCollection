@@ -17,7 +17,7 @@ public class StudentRequest extends StringRequest {
 
 
 
-    private static final String REGISTER_REQUEST_URL = "http://localhost/dataCollection/init.php";
+    private static final String REGISTER_REQUEST_URL = "http://196.6.218.42/dataCollection/init.php";
     private Map<String, String> params;
 
 

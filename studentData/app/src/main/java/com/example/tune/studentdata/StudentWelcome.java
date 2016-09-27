@@ -57,22 +57,9 @@ public class StudentWelcome extends AppCompatActivity {
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
-                            if (success) {
-                                Intent intent = new Intent(StudentWelcome.this, ThankActivity.class);
-                                StudentWelcome.this.startActivity(intent);
-                            } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(StudentWelcome.this);
-                                builder.setMessage("Saving Failed")
-                                        .setNegativeButton("Retry", null)
-                                        .create()
-                                        .show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+
+                        Intent intent = new Intent(StudentWelcome.this, ThankActivity.class);
+                        StudentWelcome.this.startActivity(intent);
                     }
                 };
 
@@ -81,5 +68,9 @@ public class StudentWelcome extends AppCompatActivity {
                 queue.add(registerRequest);
             }
         });
+
+
+
+
     }
 }
