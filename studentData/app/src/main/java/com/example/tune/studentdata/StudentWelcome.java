@@ -1,5 +1,6 @@
 package com.example.tune.studentdata;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,8 +27,6 @@ import java.util.Map;
  */
 
 public class StudentWelcome extends AppCompatActivity {
-
-    String insertUrl = "http://localhost/dataCollection/init.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,40 +46,40 @@ public class StudentWelcome extends AppCompatActivity {
         bSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StringRequest request = new StringRequest(Request.Method.POST, insertUrl, new Response.Listener<String>() {
+                final String name = etName.getText().toString();
+                final String age = etAge.getText().toString();
+                final String gender = etGender.getText().toString();
+                final String university = etUniversity.getText().toString();
+                final String job = etJob.getText().toString();
+                final String salary = etSalary.getText().toString();
+                final String company = etCompany.getText().toString();
+
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-                    }
-                }, new Response.ErrorListener(){
-                    @Override
-                    public void onErrorResponse(VolleyError error){
-
-                    }
-                }){
-
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> parameters = new HashMap<String, String>();
-                        parameters.put("name", etName.getText().toString());
-                        parameters.put("age", etAge.getText().toString());
-                        parameters.put("gender", etGender.getText().toString());
-                        parameters.put("university", etUniversity.getText().toString());
-                        parameters.put("job", etJob.getText().toString());
-                        parameters.put("salary", etSalary.getText().toString());
-                        parameters.put("company", etCompany.getText().toString());
-
-
-                        return parameters;
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            boolean success = jsonResponse.getBoolean("success");
+                            if (success) {
+                                Intent intent = new Intent(StudentWelcome.this, ThankActivity.class);
+                                StudentWelcome.this.startActivity(intent);
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(StudentWelcome.this);
+                                builder.setMessage("Saving Failed")
+                                        .setNegativeButton("Retry", null)
+                                        .create()
+                                        .show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 };
-                RequestQueue requestQueue = Volley.newRequestQueue(StudentWelcome.this);
-                requestQueue.add(request);
+
+                StudentRequest registerRequest = new StudentRequest(name, age, gender, university, job, salary, company, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(StudentWelcome.this);
+                queue.add(registerRequest);
             }
         });
-
-
     }
-
-
 }
